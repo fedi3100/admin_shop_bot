@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: bingoshop-bot
+    runtime: python
+    plan: free
+    buildCommand: cd bingoshop_bot && pip install -r requirements.txt
+    startCommand: cd bingoshop_bot && python main.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_BOT_TOKEN
+        sync: false
+      - key: ADMIN_ID
+        sync: false
+
+  - type: web
+    name: admin-bot
+    runtime: python
+    plan: free
+    buildCommand: cd admin_bot && pip install -r requirements.txt
+    startCommand: cd admin_bot && python main.py
+    envVars:
+      - key: ADMIN_BOT_TOKEN
+        sync: false
+      - key: ADMIN_ID
+        sync: false
+
+  - type: web
+    name: support-bot
+    runtime: python
+    plan: free
+    buildCommand: cd support_bot && pip install -r requirements.txt
+    startCommand: cd support_bot && python main.py
+    envVars:
+      - key: SUPPORT_BOT_TOKEN
+        sync: false
+      - key: SUPPORT_CONTACT
+        value: "@real_support_contact"
